@@ -75,7 +75,7 @@ func resourceAwsMacie2Member() *schema.Resource {
 				Computed: true,
 			},
 			"invitation_disable_email_notification": {
-				Type:     schema.TypeString,
+				Type:     schema.TypeBool,
 				Optional: true,
 			},
 			"invitation_message": {
