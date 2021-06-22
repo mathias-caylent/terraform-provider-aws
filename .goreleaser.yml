@@ -11,13 +11,11 @@ builds:
     flags:
       - -trimpath
     goarch:
-      - '386'
       - amd64
       - arm
       - arm64
     goos:
       - darwin
-      - freebsd
       - linux
       - windows
     ignore:
