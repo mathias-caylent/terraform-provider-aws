@@ -35,7 +35,6 @@ func resourceAwsMacie2Member() *schema.Resource {
 			"email": {
 				Type:     schema.TypeString,
 				Required: true,
-				ForceNew: true,
 			},
 			"tags":     tagsSchema(),
 			"tags_all": tagsSchemaComputed(),
@@ -196,6 +195,7 @@ func resourceMacie2MemberRead(ctx context.Context, d *schema.ResourceData, meta 
 	}
 
 	resp, err := conn.GetMemberWithContext(ctx, input)
+	log.Printf("[INFO] Macie member response: %+v", resp)
 	if err != nil {
 		if tfawserr.ErrCodeEquals(err, macie2.ErrCodeResourceNotFoundException) ||
 			tfawserr.ErrMessageContains(err, macie2.ErrCodeAccessDeniedException, "Macie is not enabled") ||
