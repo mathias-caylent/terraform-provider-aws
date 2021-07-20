@@ -89,7 +89,9 @@ func resourceDetectiveGraphRead(ctx context.Context, d *schema.ResourceData, met
 		return diag.FromErr(fmt.Errorf("error reading Detective Graph (%s): %w", d.Id(), err))
 	}
 
-	d.Set("graph_tags", resp.Tags)
+	if err := d.Set("graph_tags", resp.Tags); err != nil {
+		return diag.FromErr(fmt.Errorf("error setting tags for resource %s: %s", d.Id(), err))
+	}
 
 	return nil
 }
@@ -152,7 +154,7 @@ func resourceDetectiveGraphUpdate(ctx context.Context, d *schema.ResourceData, m
 		return diag.FromErr(fmt.Errorf("error updating Detective graph (%s): %w", d.Id(), err))
 	}
 
-	return resourceMacie2AccountRead(ctx, d, meta)
+	return resourceDetectiveGraphRead(ctx, d, meta)
 }
 
 func resourceDetectiveGraphDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
