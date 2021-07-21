@@ -635,6 +635,7 @@ func Provider() *schema.Provider {
 			"aws_db_snapshot":                                         resourceAwsDbSnapshot(),
 			"aws_db_subnet_group":                                     resourceAwsDbSubnetGroup(),
 			"aws_detective_graph":                                     resourceAwsDetectiveGraph(),
+			"aws_detective_invitation_accept":                         resourceAwsDetectiveInvitationAccept(),
 			"aws_detective_invitation_request":                        resourceAwsDetectiveInvitationRequest(),
 			"aws_devicefarm_project":                                  resourceAwsDevicefarmProject(),
 			"aws_directory_service_directory":                         resourceAwsDirectoryServiceDirectory(),

@@ -121,11 +121,13 @@ func resourceDetectiveInvitationRequestRead(ctx context.Context, d *schema.Resou
 	}
 
 	if err != nil {
+		d.SetId("")
 		return diag.FromErr(fmt.Errorf("error reading Detective member invitation (%s): %w", d.Id(), err))
 	}
 
-	if len(resp.MemberDetails) != 1 {
-		return diag.FromErr(fmt.Errorf("error reading Detective member invitation (%s): %w", d.Id()))
+	if len(resp.MemberDetails) == 0 {
+		d.SetId("")
+		return nil // diag.FromErr(fmt.Errorf("error reading Detective member invitation (%s)", d.Id()))
 	}
 
 	d.Set("graph_arn", resp.MemberDetails[0].GraphArn)
